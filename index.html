@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Simon</title>
+</head>
+<body>
+    <div class="simon">
+        <div class="row" id="row1"></div>
+        <div class="row">
+            <div class="col col-xxl-4"></div>
+            <div class="col col-xxl-1">
+                <div class="square mx-auto" id="green"></div>
+            </div>
+            <div class="col col-xxl-1">
+                <div class="square mx-auto" id="red"></div>
+            </div>
+            <div class="col col-xxl-1">
+                <div class="square mx-auto" id="blue"></div>
+            </div>
+            <div class="col col-xxl-1">
+                <div class="square mx-auto" id="yellow"></div>
+            </div>
+            <div class="col col-xxl-4"></div>
+        </div>
+        <div class="row">
+            <div class="col col-xxl-12">
+                <button id="start" onclick="random()">Start Game</button>
+                <button onclick="reset('green')">Reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
