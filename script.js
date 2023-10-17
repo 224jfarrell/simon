@@ -46,31 +46,23 @@ function random(){
         case 1:
             A.style.backgroundColor = '#8f8';
             A.style.boxShadow = '0 0 20px #8f8';
-            $(document).on("click", "#green", function(e) {
-                playFrequency(440);
-            });
+            playFrequency(440);
             // setTimeout(reset('green'), 1000);
             break;
         case 2:
             B.style.backgroundColor = '#f88';
             B.style.boxShadow = '0 0 20px #f88';
-            $(document).on("click", "#green", function(e) {
-                playFrequency(554.3653);
-            });
+            playFrequency(554.3653);
             break;
         case 3:
             C.style.backgroundColor = '#88f';
             C.style.boxShadow = '0 0 20px #88f';
-            $(document).on("click", "#green", function(e) {
-                playFrequency(659.2551);
-            })
+            playFrequency(659.2551);
             break;
         case 4:
             D.style.backgroundColor: = '#ff8';
             D.style.boxShadow = '0 0 20px #ff8';
-            $(document).on("click", "#green", function(e) {
-                playFrequency(880);
-            })
+            playFrequency(880);
         default:
             console.log('not 1');
             break;
