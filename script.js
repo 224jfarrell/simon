@@ -20,12 +20,6 @@ function playFrequency(frequency) {
     source.start(0);
 }
 
-$(document).ready(function () {
-    $(document).on("click", "#green", function(e) {
-        playFrequency(440);
-    })
-});
-
 
 //code
 let A = document.getElementById('green');
@@ -36,6 +30,15 @@ function reset(color){
     if(color == 'green'){
         A.style.backgroundColor = '#3f3';
         A.style.boxShadow = '0 0 0 0';
+    } else if(color == 'red'){
+        B.style.backgroundColor = "#f33";
+        B.style.boxShadow = '0 0 0 0';
+    } else if(color == 'blue'){
+        C.style.backgroundColor = "#33f";
+        C.style.boxShadow = "0 0 0 0";
+    } else if(color == 'yellow'){
+        D.style.backgroundColor = "#ff3";
+        D.style.boxShadow = '0 0 0 0';
     }
 }
 
@@ -47,22 +50,26 @@ function random(){
             A.style.backgroundColor = '#8f8';
             A.style.boxShadow = '0 0 20px #8f8';
             playFrequency(440);
-            // setTimeout(reset('green'), 1000);
+            setTimeout(function(){ reset('green') }, 1000);
             break;
         case 2:
             B.style.backgroundColor = '#f88';
             B.style.boxShadow = '0 0 20px #f88';
             playFrequency(554.3653);
+            setTimeout(function(){ reset('red') }, 1000);
             break;
         case 3:
             C.style.backgroundColor = '#88f';
             C.style.boxShadow = '0 0 20px #88f';
             playFrequency(659.2551);
+            setTimeout(function(){ reset('blue') }, 1000);
             break;
         case 4:
-            D.style.backgroundColor: = '#ff8';
+            D.style.backgroundColor = '#ff8';
             D.style.boxShadow = '0 0 20px #ff8';
             playFrequency(880);
+            setTimeout(function(){ reset('yellow') }, 1000);
+            break;
         default:
             console.log('not 1');
             break;
