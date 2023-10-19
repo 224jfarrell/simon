@@ -29,3 +29,38 @@
 #yellow {
     background-color: #ffff33;
 }
+
+.buttonbox {
+    width: 100%;
+}
+
+.input-btn{
+    margin: 0;
+    height:100%;
+    width:100%;
+}
+
+#greenbtn {
+    background-color: inherit;
+    border: none;
+}
+
+#redbtn {
+    background-color: inherit;
+    border: none;
+}
+
+#bluebtn {
+    background-color: inherit;
+    border: none;
+}
+
+#yellowbtn {
+    background-color: inherit;
+    border: none;
+}
+
+#start, #score {
+    width: 100px;
+    display: block;
+}

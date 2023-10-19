@@ -2,7 +2,7 @@ var audioContext = new AudioContext();
 function playFrequency(frequency) {
     // create 2 second worth of audio buffer, with single channels and sampling rate of your device.
     var sampleRate = audioContext.sampleRate;
-    var duration = 2*sampleRate;
+    var duration = sampleRate / 2.5;
     var numChannels = 1;
     var buffer  = audioContext.createBuffer(numChannels, duration, sampleRate);
     // fill the channel with the desired frequency's data
@@ -43,35 +43,93 @@ function reset(color){
 }
 
 const colors = ['green', 'red', 'blue', 'yellow'];
-function random(){
+
+let expectedInput = ''
+
+function randomColor(){
     let result = Math.ceil(Math.random() * 4);
     switch(result){
         case 1:
+            result = 'green';
             A.style.backgroundColor = '#8f8';
             A.style.boxShadow = '0 0 20px #8f8';
             playFrequency(440);
-            setTimeout(function(){ reset('green') }, 1000);
+            setTimeout(function(){ reset('green') }, 400);
             break;
         case 2:
+            result = 'red';
             B.style.backgroundColor = '#f88';
             B.style.boxShadow = '0 0 20px #f88';
             playFrequency(554.3653);
-            setTimeout(function(){ reset('red') }, 1000);
+            setTimeout(function(){ reset('red') }, 400);
             break;
         case 3:
+            result = 'blue';
             C.style.backgroundColor = '#88f';
             C.style.boxShadow = '0 0 20px #88f';
             playFrequency(659.2551);
-            setTimeout(function(){ reset('blue') }, 1000);
+            setTimeout(function(){ reset('blue') }, 400);
             break;
         case 4:
+            result = 'yellow';
             D.style.backgroundColor = '#ff8';
             D.style.boxShadow = '0 0 20px #ff8';
             playFrequency(880);
-            setTimeout(function(){ reset('yellow') }, 1000);
+            setTimeout(function(){ reset('yellow') }, 400);
             break;
         default:
             console.log('not 1');
             break;
     }
+    expectedInput = result;
 }
+
+let score = 0;
+let scoreText = document.getElementById('score');
+scoreText.innerText = `Score: ${score}`;
+if(score == 1){
+    scoreText.innerText = "you win";
+}
+
+
+let actualInput;
+
+function check(input){
+    switch(input){
+        case 'green':
+            actualInput = 'green';
+            break;
+        case 'red':
+            actualInput = 'red';
+            break;
+        case 'blue':
+            actualInput = 'blue';
+            break;
+        case 'yellow':
+            actualInput = 'yellow';
+            break;
+    }
+    if(actualInput == expectedInput){
+        score += 1;
+        scoreText.innerText = `Score: ${score}`;
+        nextRound();
+    } else {
+        scoreText.innerText = "you lose"
+    }
+}
+
+let roundList = [0];
+
+
+
+function nextRound(){
+    roundList.push(0);
+    let delay = 500 * roundList.length;
+    let repeat = setInterval(randomColor, delay);
+    setTimeout(repeat, 1000);
+    for(let i; i <= score; i++){
+    }
+}
+/*  todo 
+    - make lightup require click on correct square
+*/
