@@ -93,6 +93,24 @@ if(score == 1){
 
 
 let actualInput;
+let E = document.getElementById('greenbtn');
+let F = document.getElementById('redbtn');
+let G = document.getElementById('bluebtn');
+let H = document.getElementById('yellowbtn');
+
+function disable(){
+    E.disabled = true;
+    F.disabled = true;
+    G.disabled = true;
+    H.disabled = true;
+}
+
+function enable(){
+    E.disabled = false;
+    F.disabled = false;
+    G.disabled = false;
+    H.disabled = false;
+}
 
 function check(input){
     switch(input){
@@ -115,6 +133,14 @@ function check(input){
         nextRound();
     } else {
         scoreText.innerText = "you lose"
+        disable();
+        document.getElementById("start").innerText = "Refresh";
+    }
+}
+
+function refresh(){
+    if(E.disabled && F.disabled && G.disabled && H.disabled){
+        location.reload();
     }
 }
 
@@ -125,16 +151,37 @@ function stop(){
     clearInterval(repeat);
 } 
 
-function nextRound(){
-    roundList.push(0);
+// function nextRound(){
+//     roundList.push(0);
+//     let delay = 500 * roundList.length;
+//     let repeat = setInterval(randomColor, 500);
+//     setTimeout(repeat, delay);
+//     function stop(){
+//         clearInterval(repeat);
+//     }
+//     setTimeout(stop, delay);
+// }
+
+let repeat;   
+function nextRound() {
+    clearInterval(repeat);
+    repeat = setInterval(randomColor, 500);
+    console.log(expectedInput);
+    roundList.push(expectedInput);
     let delay = 500 * roundList.length;
-    let repeat = setInterval(randomColor, 500);
-    setTimeout(repeat, delay);
-    function stop(){
-        clearInterval(repeat);
-    }
+    console.log(delay);
     setTimeout(stop, delay);
+    console.log(roundList);
 }
+
+function firstRound(){
+    randomColor();
+    console.log(expectedInput);
+    roundList[0] = expectedInput;
+    console.log(roundList);
+}
+
+
 /*  todo 
     - make lightup require click on correct square
 */
