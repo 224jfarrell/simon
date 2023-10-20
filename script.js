@@ -119,16 +119,21 @@ function check(input){
 }
 
 let roundList = [0];
+let timePassed = 0;
 
-
+function stop(){
+    clearInterval(repeat);
+} 
 
 function nextRound(){
     roundList.push(0);
     let delay = 500 * roundList.length;
-    let repeat = setInterval(randomColor, delay);
-    setTimeout(repeat, 1000);
-    for(let i; i <= score; i++){
+    let repeat = setInterval(randomColor, 500);
+    setTimeout(repeat, delay);
+    function stop(){
+        clearInterval(repeat);
     }
+    setTimeout(stop, delay);
 }
 /*  todo 
     - make lightup require click on correct square
