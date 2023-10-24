@@ -42,6 +42,30 @@ function reset(color){
     }
 }
 
+function playNoise(color){
+    if(color == 'green'){
+        A.style.backgroundColor = '#8f8';
+        A.style.boxShadow = '0 0 20px #8f8';
+        playFrequency(440);
+        setTimeout(function(){ reset('green') }, 400);
+    } else if(color == 'red'){
+        B.style.backgroundColor = '#f88';
+        B.style.boxShadow = '0 0 20px #f88';
+        playFrequency(554.3653);
+        setTimeout(function(){ reset('red') }, 400);
+    } else if(color == 'blue'){
+        C.style.backgroundColor = '#88f';
+        C.style.boxShadow = '0 0 20px #88f';
+        playFrequency(659.2551);
+        setTimeout(function(){ reset('blue') }, 400);
+    } else if(color == 'yellow'){
+        D.style.backgroundColor = '#ff8';
+        D.style.boxShadow = '0 0 20px #ff8';
+        playFrequency(880);
+        setTimeout(function(){ reset('yellow') }, 400);
+    }
+}
+
 const colors = ['green', 'red', 'blue', 'yellow'];
 
 let expectedInput = ''
@@ -51,31 +75,19 @@ function randomColor(){
     switch(result){
         case 1:
             result = 'green';
-            A.style.backgroundColor = '#8f8';
-            A.style.boxShadow = '0 0 20px #8f8';
-            playFrequency(440);
-            setTimeout(function(){ reset('green') }, 400);
+            playNoise('green');
             break;
         case 2:
             result = 'red';
-            B.style.backgroundColor = '#f88';
-            B.style.boxShadow = '0 0 20px #f88';
-            playFrequency(554.3653);
-            setTimeout(function(){ reset('red') }, 400);
+            playNoise('red');
             break;
         case 3:
             result = 'blue';
-            C.style.backgroundColor = '#88f';
-            C.style.boxShadow = '0 0 20px #88f';
-            playFrequency(659.2551);
-            setTimeout(function(){ reset('blue') }, 400);
+            playNoise('blue');
             break;
         case 4:
             result = 'yellow';
-            D.style.backgroundColor = '#ff8';
-            D.style.boxShadow = '0 0 20px #ff8';
-            playFrequency(880);
-            setTimeout(function(){ reset('yellow') }, 400);
+            playNoise('yellow');
             break;
         default:
             console.log('not 1');
@@ -151,26 +163,16 @@ function stop(){
     clearInterval(repeat);
 } 
 
-// function nextRound(){
-//     roundList.push(0);
-//     let delay = 500 * roundList.length;
-//     let repeat = setInterval(randomColor, 500);
-//     setTimeout(repeat, delay);
-//     function stop(){
-//         clearInterval(repeat);
-//     }
-//     setTimeout(stop, delay);
-// }
-
 let repeat;   
 function nextRound() {
-    clearInterval(repeat);
+    disable();
+    stop();
     repeat = setInterval(randomColor, 500);
-    console.log(expectedInput);
     roundList.push(expectedInput);
     let delay = 500 * roundList.length;
     console.log(delay);
     setTimeout(stop, delay);
+    setTimeout(enable, delay + 500);
     console.log(roundList);
 }
 
