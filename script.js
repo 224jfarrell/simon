@@ -21,7 +21,7 @@ function playFrequency(frequency) {
 }
 
 
-//code
+//variables
 let A = document.getElementById('green');
 let B = document.getElementById('red');
 let C = document.getElementById('blue');
@@ -31,24 +31,46 @@ let F = document.getElementById('redbtn');
 let G = document.getElementById('bluebtn');
 let H = document.getElementById('yellowbtn');
 
+let roundList = [];
+let container = [];
 
+const colors = ['green', 'red', 'blue', 'yellow'];
+
+let expectedInput = ''
+let actualInput;
+
+let score = 0;
+let scoreText = document.getElementById('score');
+scoreText.innerText = `Score: ${score}`;
+
+let interval, i = 0;
+interval = setInterval(thisCouldBreakEverything, 500);
+
+let repeat;
+
+
+//functions
 function reset(color){
     if(color == 'green'){
         A.style.backgroundColor = '#3f3';
         A.style.boxShadow = '0 0 0 0';
         A.style.borderStyle = 'outset';
+        A.style.borderColor = '#000'
     } else if(color == 'red'){
         B.style.backgroundColor = "#f33";
         B.style.boxShadow = '0 0 0 0';
         B.style.borderStyle = 'outset';
+        B.style.borderColor = '#000'
     } else if(color == 'blue'){
         C.style.backgroundColor = "#33f";
         C.style.boxShadow = "0 0 0 0";
         C.style.borderStyle = 'outset';
+        C.style.borderColor = '#000'
     } else if(color == 'yellow'){
         D.style.backgroundColor = "#ff3";
         D.style.boxShadow = '0 0 0 0';
         D.style.borderStyle = 'outset';
+        D.style.borderColor = '#000'
     }
 }
 
@@ -57,32 +79,34 @@ function playNoise(color){
         A.style.backgroundColor = '#8f8';
         A.style.boxShadow = '0 0 20px 10px #8f8';
         A.style.borderStyle = 'inset';
+        A.style.borderColor = '#050'
         playFrequency(440);
         setTimeout(function(){ reset('green') }, 400);
     } else if(color == 'red'){
         B.style.backgroundColor = '#f88';
         B.style.boxShadow = '0 0 20px 10px #f88';
         B.style.borderStyle = 'inset';
+        B.style.borderColor = '#500'
         playFrequency(554.3653);
         setTimeout(function(){ reset('red') }, 400);
     } else if(color == 'blue'){
         C.style.backgroundColor = '#88f';
         C.style.boxShadow = '0 0 20px 10px #88f';
         C.style.borderStyle = 'inset';
+        C.style.borderColor = '#005'
         playFrequency(659.2551);
         setTimeout(function(){ reset('blue') }, 400);
     } else if(color == 'yellow'){
         D.style.backgroundColor = '#ff8';
         D.style.boxShadow = '0 0 20px 10px #ff8';
         D.style.borderStyle = 'inset';
+        D.style.borderColor = '#550'
         playFrequency(880);
         setTimeout(function(){ reset('yellow') }, 400);
     }
 }
 
-const colors = ['green', 'red', 'blue', 'yellow'];
 
-let expectedInput = ''
 
 function randomColor(){
     let result = Math.ceil(Math.random() * 4);
@@ -108,17 +132,10 @@ function randomColor(){
             break;
     }
     expectedInput = result;
+    console.log("expected input " + expectedInput);
+    container[0] = expectedInput;
+    console.log("container " + container);
 }
-
-let score = 0;
-let scoreText = document.getElementById('score');
-scoreText.innerText = `Score: ${score}`;
-if(score == 1){
-    scoreText.innerText = "you win";
-}
-
-
-let actualInput;
 
 function disable(){
     E.disabled = true;
@@ -158,22 +175,27 @@ function check(input){
         scoreText.innerText = "you lose"
         disable();
         document.getElementById("start").innerText = "Refresh";
+        document.getElementById("start").disabled = false;
         switch(expectedInput){
             case 'green':
                 A.style.backgroundColor = '#8f8';
                 A.style.boxShadow = '0 0 20px 10px #8f8';
+                A.style.borderColor = '#050'
                 break;
             case 'red':
                 B.style.backgroundColor = '#f88';
                 B.style.boxShadow = '0 0 20px 10px #f88';
+                B.style.borderColor = '#500'
                 break;
             case 'blue':
-                A.style.backgroundColor = '#88f';
-                A.style.boxShadow = '0 0 20px 10px #88f';
+                C.style.backgroundColor = '#88f';
+                C.style.boxShadow = '0 0 20px 10px #88f';
+                C.style.borderColor = '#005'
                 break;
             case 'yellow':
                 D.style.backgroundColor = '#ff8';
                 D.style.boxShadow = '0 0 20px 10px #ff8';
+                D.style.borderColor = '#550'
                 break;
         }
         switch(actualInput){
@@ -197,22 +219,24 @@ function check(input){
     }
 }
 
+function disableStartButton(){
+    document.getElementById('start').disabled = true;
+}
+
 function refresh(){
     if(E.disabled && F.disabled && G.disabled && H.disabled){
         location.reload();
     }
 }
 
-let roundList = [];
-
 function stop(){
     clearInterval(repeat);
 } 
 
-let repeat;   
 function nextRound() {
     disable();
     stop();
+    i = 0
     repeat = setInterval(thisCouldBreakEverything, 500);
     // repeat = setInterval(randomColor, 500);
     let delay = 500 * (roundList.length);
@@ -220,7 +244,7 @@ function nextRound() {
     setTimeout(stop, delay);
     setTimeout(randomColor, delay + 500);
     setTimeout(enable, delay + 1000);
-    console.log(roundList);
+    console.log("roundList " + roundList);
 }
 
 function firstRound(){
@@ -230,10 +254,12 @@ function firstRound(){
 }
 
 function thisCouldBreakEverything(){
-    for(i = 0; i < roundList.length; setInterval(i++, 500)){
-        console.log(i);
-        console.log(roundList[i]);
-        switch(roundList[i]){
+    if(i < roundList.length){
+        i++;
+        console.log("i " + i);
+        expectedInput = roundList[i-1]
+        console.log("expected input 2 " + expectedInput);
+        switch(expectedInput){
             case 'green':
                 playNoise('green');
                 break;
@@ -247,5 +273,5 @@ function thisCouldBreakEverything(){
                 playNoise('yellow');
                 break;
         }
-    }
+    } else clearInterval(interval);
 }
