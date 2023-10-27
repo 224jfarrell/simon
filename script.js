@@ -170,7 +170,7 @@ function check(input){
         roundList.push(expectedInput);
         nextRound();
     } else {
-        scoreText.innerText = "you lose"
+        scoreText.innerText = `you lose || score: ${score}`;
         disable();
         document.getElementById("start").innerText = "Refresh";
         document.getElementById("start").disabled = false;
