@@ -132,9 +132,7 @@ function randomColor(){
             break;
     }
     expectedInput = result;
-    console.log("expected input " + expectedInput);
     container[0] = expectedInput;
-    console.log("container " + container);
 }
 
 function disable(){
@@ -238,27 +236,20 @@ function nextRound() {
     stop();
     i = 0
     repeat = setInterval(thisCouldBreakEverything, 500);
-    // repeat = setInterval(randomColor, 500);
     let delay = 500 * (roundList.length);
-    console.log(delay);
     setTimeout(stop, delay);
     setTimeout(randomColor, delay + 500);
     setTimeout(enable, delay + 1000);
-    console.log("roundList " + roundList);
 }
 
 function firstRound(){
     randomColor();
-    console.log(expectedInput);
-    console.log(roundList);
 }
 
 function thisCouldBreakEverything(){
     if(i < roundList.length){
         i++;
-        console.log("i " + i);
         expectedInput = roundList[i-1]
-        console.log("expected input 2 " + expectedInput);
         switch(expectedInput){
             case 'green':
                 playNoise('green');
