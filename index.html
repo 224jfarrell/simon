@@ -13,16 +13,6 @@
         <div class="row">
             <div class="col col-xxl-4"></div>
             <div class="col col-xxl-1">
-                <div class="square mx-auto" id="green">
-                    <button class="input-btn" id="greenbtn" onclick="check('green')"></button>
-                </div>
-            </div>
-            <div class="col col-xxl-1">
-                <div class="square mx-auto" id="red">
-                    <button class="input-btn" id="redbtn" onclick="check('red')"></button>
-                </div>
-            </div>
-            <div class="col col-xxl-1">
                 <div class="square mx-auto" id="blue">
                     <button class="input-btn" id="bluebtn" onclick="check('blue')"></button>
                 </div>
@@ -32,13 +22,23 @@
                     <button class="input-btn" id="yellowbtn" onclick="check('yellow')"></button>
                 </div>
             </div>
+            <div class="col col-xxl-1">
+                <div class="square mx-auto" id="red">
+                    <button class="input-btn" id="redbtn" onclick="check('red')"></button>
+                </div>
+            </div>
+            <div class="col col-xxl-1">
+                <div class="square mx-auto" id="green">
+                    <button class="input-btn" id="greenbtn" onclick="check('green')"></button>
+                </div>
+            </div>
             <div class="col col-xxl-4"></div>
         </div>
         <br>
         <div class="row">
             <div class="col col-xxl-4"></div>
             <div class="col col-xxl-4">
-                <button id="start" onclick="firstRound(); refresh(); disableStartButton();" class="mx-auto btn-primary">Start Game</button>
+                <button id="start" onclick="refresh(); firstRound(); disableStartButton();" class="mx-auto btn-primary">Start Game</button>
             </div>
             <div class="col col-xxl-4"></div>
         </div>
