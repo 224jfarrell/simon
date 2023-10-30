@@ -46,10 +46,7 @@ scoreText.innerText = `Score: ${score}`;
 let interval, i = 0;
 interval = setInterval(order, 500);
 
-// let W = E.addEventListener('click', setExpectedToZero);
-// let X = F.addEventListener('click', setExpectedToZero);
-// let Y = G.addEventListener('click', setExpectedToZero);
-// let Z = H.addEventListener('click', setExpectedToZero);
+let j = 0;
 
 let repeat;
 
@@ -170,10 +167,16 @@ function check(input){
             break;
     }
     if(actualInput == expectedInput){
-        score += 1;
-        scoreText.innerText = `Score: ${score}`;
-        roundList.push(expectedInput);
-        nextRound();
+        j++;
+        console.log(j);
+        console.log(roundList.length + 1)
+        if(j == roundList.length + 1){
+            score += 1;
+            scoreText.innerText = `Score: ${score}`;
+            roundList.push(expectedInput);
+            console.log(j);
+            nextRound();
+        }
     } else {
         scoreText.innerText = `you lose || score: ${score}`;
         disable();
@@ -206,11 +209,11 @@ function check(input){
                 A.style.backgroundColor = '#000';
                 A.style.borderColor = '#f00';
                 break;
-            case 'red':
+            case 'yellow':
                 B.style.backgroundColor = '#000';
                 B.style.borderColor = '#f00';
                 break;
-            case 'yellow':
+            case 'red':
                 C.style.backgroundColor = '#000';
                 C.style.borderColor = '#f00';
                 break;
@@ -244,8 +247,9 @@ function nextRound() {
     let delay = 500 * (roundList.length);
     setTimeout(stop, delay);
     setTimeout(randomColor, delay + 500);
-    // setTimeout(setExpectedToZero, delay + 1000);
+    setTimeout(setExpectedToZero, delay + 1000);
     setTimeout(enable, delay + 1000);
+    setTimeout(j = 0, delay + 1000);
 }
 
 function firstRound(){
@@ -273,9 +277,26 @@ function order(){
     } else clearInterval(interval);
 }
 
-// function setExpectedToZero(){
-//     expectedInput = roundList[0];
-//     console.log(expectedInput);
-//     expectedInput[i+1];
-//     console.log(expectedInput, i);
-// }
+function setExpectedToZero(){
+    expectedInput = roundList[j];
+    E.addEventListener('click', function(){
+        console.log(roundList[j - 1]);
+        console.log(j);
+        console.log(expectedInput);
+    });
+    F.addEventListener('click', function(){
+        console.log(roundList[j - 1]);
+        console.log(j);
+        console.log(expectedInput);
+    });
+    G.addEventListener('click', function(){
+        console.log(roundList[j - 1]);
+        console.log(j);
+        console.log(expectedInput);
+    });
+    H.addEventListener('click', function(){
+        console.log(roundList[j - 1]);
+        console.log(j);
+        console.log(expectedInput);
+    });
+}
