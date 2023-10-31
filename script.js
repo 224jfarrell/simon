@@ -169,12 +169,10 @@ function check(input){
     if(actualInput == expectedInput){
         j++;
         console.log(j);
-        console.log(roundList.length + 1)
         if(j == roundList.length + 1){
             score += 1;
             scoreText.innerText = `Score: ${score}`;
             roundList.push(expectedInput);
-            console.log(j);
             nextRound();
         }
     } else {
