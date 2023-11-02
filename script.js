@@ -11,6 +11,7 @@ function playFrequency(frequency) {
       channelData[i]=Math.sin(2*Math.PI*frequency*i/(sampleRate));
     }
 
+
     // create audio source node.
     var source = audioContext.createBufferSource();
     source.buffer = buffer;
@@ -163,6 +164,34 @@ function playNoise(color){
     }
 }
 
+function light(color){
+    if(color == 'blue'){
+        A.style.backgroundColor = '#88f';
+        A.style.boxShadow = '0 0 20px 10px #88f';
+        A.style.borderStyle = 'inset';
+        A.style.borderColor = '#005'
+        setTimeout(function(){ reset('blue') }, 100);
+    } else if(color == 'yellow'){
+        B.style.backgroundColor = '#ff8';
+        B.style.boxShadow = '0 0 20px 10px #ff8';
+        B.style.borderStyle = 'inset';
+        B.style.borderColor = '#550'
+        setTimeout(function(){ reset('yellow') }, 100);
+    } else if(color == 'red'){
+        C.style.backgroundColor = '#f88';
+        C.style.boxShadow = '0 0 20px 10px #f88';
+        C.style.borderStyle = 'inset';
+        C.style.borderColor = '#500'
+        setTimeout(function(){ reset('red') }, 100);
+    } else if(color == 'green'){
+        D.style.backgroundColor = '#8f8';
+        D.style.boxShadow = '0 0 20px 10px #8f8';
+        D.style.borderStyle = 'inset';
+        D.style.borderColor = '#050'
+        setTimeout(function(){ reset('green') }, 100);
+    }
+}
+
 function nextRound() {
     disable();
     stop();
@@ -217,12 +246,12 @@ function check(input){
             break;
     }
     if(actualInput == expectedInput){
+        light(actualInput);
         j++;
         if(j == roundList.length + 1){
             score += 1;
             scoreText.innerText = `Score: ${score}`;
             roundList.push(expectedInput);
-            console.log("added container to roundList");
             nextRound();
         }
     } else {
@@ -275,44 +304,30 @@ function check(input){
 
 function checkUnd(){
     if(expectedInput == undefined){
-        console.log("container");
         expectedInput = container[0];
     }
 }
 
 function setExpectedToZero(){
     expectedInput = roundList[j];
-    console.log("new container = " + container[0]);
     E.addEventListener('click', function(){
+        // light('blue');
         expectedInput = roundList[j];
-        console.log("j = " + j);
-        console.log("Round List length = " + roundList.length);
-        console.log(roundList);
-        console.log(container);
-        console.log(expectedInput);
+        checkUnd();
     });
     F.addEventListener('click', function(){
+        // light('yellow');
         expectedInput = roundList[j];
-        console.log("j = " + j);
-        console.log("Round List length = " + roundList.length);
-        console.log(roundList);
-        console.log(container);
-        console.log(expectedInput);
+        checkUnd();
     });
     G.addEventListener('click', function(){
+        // light('red');
         expectedInput = roundList[j];
-        console.log("j = " + j);
-        console.log("Round List length = " + roundList.length);
-        console.log(roundList);
-        console.log(container);
-        console.log(expectedInput);
+        checkUnd();
     });
     H.addEventListener('click', function(){
+        // light('green');
         expectedInput = roundList[j];
-        console.log("j = " + j);
-        console.log("Round List length = " + roundList.length);
-        console.log(roundList);
-        console.log(container);
-        console.log(expectedInput);
+        checkUnd();
     });
 }
